@@ -30,7 +30,11 @@ android {
 
 dependencies {
 
+    // Add the module interface as our dependency
     implementation project(":module-interface")
+
+    // And the sketchware-blocks-view
+    implementation project(":lib")
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'

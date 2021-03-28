@@ -1,4 +1,6 @@
+include ':lib'
 include ':module-interface'
 include ':app'
 project(':module-interface').projectDir = new File(rootDir, 'openblocks-module-interface/lib/')
+project(':lib').projectDir = new File(rootDir, 'sketchware-blocks-view/lib/')
 rootProject.name = "sketchware-blocks-view-wrapper"
