@@ -57,12 +57,10 @@ public class BlocksViewModule implements OpenBlocksModule.ProjectCodeGUI {
                 arguments.add(new BlockField(parameter));
             }
 
-            // TODO: 3/28/21 Color variable for each blocks given by BlockCollection
-
             event.blocks.add(new Block(
                     code_data.blocks_formats.get(block.opcode),
                     arguments,
-                    0xFF1A67E3
+                    block.color
             ));
         }
 
