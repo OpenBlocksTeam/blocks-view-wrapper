@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.openblocks.moduleinterface.OpenBlocksModule;
 import com.openblocks.moduleinterface.callbacks.Logger;
 import com.openblocks.moduleinterface.models.code.BlockCode;
+import com.openblocks.moduleinterface.models.code.BlockCodeNest;
 import com.openblocks.moduleinterface.models.code.ParseBlockTask;
 import com.openblocks.moduleinterface.models.config.OpenBlocksConfig;
 import com.openblocks.moduleinterface.projectfiles.OpenBlocksCode;
@@ -26,12 +27,16 @@ public class OpenBlocksCollection implements OpenBlocksModule.BlocksCollection {
     public Object[] getBlocks() {
         return new Object[] {
                 new Object[] {
+                        /* Block Type */ BlockCode.class,
+                        /* Color */ 0x3287EA,
                         /* Opcode */ "toast",
                         /* Format */ "Toast %s",
                         (ParseBlockTask) (code, parameters, childs_parsed_code) ->
                                 code.append("android.widget.Toast.makeText(this, \"").append(parameters.get(0)).append("\", android.widget.Toast.LENGTH_SHORT).show();")
                 },
                 new Object[] {
+                        BlockCodeNest.class,
+                        0x3FBD11,
                         "on_click",
                         "View ID %v onClick",
                         (ParseBlockTask) (code, parameters, childs_parsed_code) -> {
