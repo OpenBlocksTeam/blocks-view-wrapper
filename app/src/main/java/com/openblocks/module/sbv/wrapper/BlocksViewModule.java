@@ -4,10 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.openblocks.blocks.view.SketchwareBlock;
-import com.openblocks.blocks.view.SketchwareBlocksView;
-import com.openblocks.blocks.view.SketchwareEvent;
-import com.openblocks.blocks.view.SketchwareField;
+import com.openblocks.blocks.view.Block;
+import com.openblocks.blocks.view.BlocksView;
+import com.openblocks.blocks.view.BlocksViewEvent;
+import com.openblocks.blocks.view.BlockField;
 import com.openblocks.moduleinterface.OpenBlocksModule;
 import com.openblocks.moduleinterface.callbacks.Logger;
 import com.openblocks.moduleinterface.callbacks.SaveCallback;
@@ -20,7 +20,7 @@ import com.openblocks.moduleinterface.projectfiles.OpenBlocksLayout;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class SketchwareBlocksViewModule implements OpenBlocksModule.ProjectCodeGUI {
+public class BlocksViewModule implements OpenBlocksModule.ProjectCodeGUI {
 
     WeakReference<Context> context;
     Logger l;
@@ -48,18 +48,18 @@ public class SketchwareBlocksViewModule implements OpenBlocksModule.ProjectCodeG
 
     @Override
     public void show(Context context, ViewGroup layout, OpenBlocksCode code_data, OpenBlocksLayout layout_data, OpenBlocksProjectMetadata metadata, SaveCallback<OpenBlocksCode> saveCallback) {
-        SketchwareEvent event = new SketchwareEvent(metadata.getName(), "onCreate");
+        BlocksViewEvent event = new BlocksViewEvent(metadata.getName(), "onCreate");
 
         for (BlockCode block : code_data.blocks) {
-            ArrayList<SketchwareField> arguments = new ArrayList<>();
+            ArrayList<BlockField> arguments = new ArrayList<>();
 
             for (String parameter : block.parameters) {
-                arguments.add(new SketchwareField(parameter));
+                arguments.add(new BlockField(parameter));
             }
 
             // TODO: 3/28/21 Color variable for each blocks given by BlockCollection
 
-            event.blocks.add(new SketchwareBlock(
+            event.blocks.add(new Block(
                     code_data.blocks_formats.get(block.opcode),
                     arguments,
                     0xFF1A67E3
@@ -69,6 +69,6 @@ public class SketchwareBlocksViewModule implements OpenBlocksModule.ProjectCodeG
         // TODO: 3/28/21 Set this to the code
         // For testing, we use the demo blocks first
 
-        layout.addView(new SketchwareBlocksView(context));
+        layout.addView(new BlocksView(context));
     }
 }
